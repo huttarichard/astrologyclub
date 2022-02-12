@@ -5,7 +5,7 @@ import Ethereum from './Ethereum'
 import Close from './Close'
 
 const ModalBase = styled.div`
-  position: absolute;
+  position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
