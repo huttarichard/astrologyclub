@@ -5,7 +5,7 @@ import Wallet from './components/Wallet';
 import MintModal from './components/MintModal';
 
 function App(){
-  const [showModal, setShowModal] = useState(true)
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <ContractContextProvider>

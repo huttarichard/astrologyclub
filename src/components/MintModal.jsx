@@ -50,6 +50,7 @@ const ModalForm = styled.form`
   label {
     display: flex;
     flex-direction: column;
+    margin-bottom: 8px;
 
     span {
       display: inline-block;
@@ -84,13 +85,19 @@ const MintData = styled.div`
 
       svg {
         display: block;
-        width: 1.5rem;
+        width: 1.3rem;
         height: auto;
         margin-right: 0.5rem;
       }
 
       span {
-        font-size: 18px;
+        font-size: 14px;
+      }
+    }
+
+    &:last-child {
+      span {
+        font-size: 14px;
       }
     }
   }
@@ -177,7 +184,7 @@ function MintModal({show, handleClose}) {
               <span>0.07 ETH</span>
             </div>
             <div>
-              <p>Maximum amount: 3</p>
+              <span>Maximum amount: 3</span>
             </div>
           </MintData>
           <StyledButton disabled={disabled}>Mint</StyledButton>

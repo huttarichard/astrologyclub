@@ -13,6 +13,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "bundle": "webpack --config webpack.bundle.config.js",
+    "compile": "truffle compile --contracts_build_directory=./src/contracts",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

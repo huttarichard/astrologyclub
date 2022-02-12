@@ -1,7 +1,7 @@
 import React from 'react';
 import { createContext, useState } from 'react';
 import config from '../config';
-import {abi} from '../contracts/SamuraiTemple.json';
+import {abi} from '../contracts/AstrologyClub.json';
 
 export const ContractContext = createContext({
   contract: null,
