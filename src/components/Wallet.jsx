@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   margin-right: 1rem;
 `
 
-const ConnectButton = styled.button`
+const StyledButton = styled.button`
   border: solid 1px #d1a18a;
   background: transparent;
   color: #d1a18a;
@@ -48,23 +48,7 @@ const MintWrapper = styled.div`
   }
 `
 
-const MintButton = styled.button`
-  border: solid 1px #d1a18a;
-  background: transparent;
-  color: #d1a18a;
-  font-family: "Archivo Black", sans-serif;
-  font-size: 11px;
-  text-transform: uppercase;
-  padding: 6px 12px;
-  transition: all .3s;
-  cursor: pointer;
-  &:hover {
-    background-color: #d1a18a;
-    color: #000;
-  }
-`
-
-function Wallet() {
+function Wallet({showModal}) {
   const { wallet, isMainnet, connectWallet } = useContext(WalletContext);
 
   return <Wrapper>
@@ -76,14 +60,14 @@ function Wallet() {
         </WalletWrapper>
         <MintWrapper>
           {isMainnet ? (
-            <MintButton>Mint</MintButton>
+            <StyledButton onClick={showModal}>Mint</StyledButton>
           ) : (
             <span>Switch to mainnet</span>
           )}
         </MintWrapper>
       </ConnectedWrapper>
     ) : (
-      <ConnectButton onClick={connectWallet}>Connect Wallet</ConnectButton>
+      <StyledButton onClick={connectWallet}>Connect Wallet</StyledButton>
     )}
   </Wrapper>
 }
