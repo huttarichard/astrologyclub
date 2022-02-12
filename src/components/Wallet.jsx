@@ -51,6 +51,12 @@ const MintWrapper = styled.div`
 function Wallet({showModal}) {
   const { wallet, isMainnet, connectWallet } = useContext(WalletContext);
 
+  const deploy = async () => {
+    const res = await wallet.deploy();
+
+    console.log(res);
+  }
+
   return <Wrapper>
     {wallet ? (
       <ConnectedWrapper>
@@ -60,7 +66,10 @@ function Wallet({showModal}) {
         </WalletWrapper>
         <MintWrapper>
           {isMainnet ? (
-            <StyledButton onClick={showModal}>Mint</StyledButton>
+            <>
+              <StyledButton onClick={showModal}>Mint</StyledButton>
+              <StyledButton onClick={deploy}>Deploy</StyledButton>
+            </>
           ) : (
             <span>Switch to mainnet</span>
           )}

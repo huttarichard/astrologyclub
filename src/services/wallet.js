@@ -1,5 +1,6 @@
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import {abi, bytecode} from '../contracts/AstrologyClub.json'
 import config from '../config';
 
 const providerOptions = {
@@ -43,11 +44,24 @@ class Wallet {
     return this.provider.selectedAddress;
   }
 
+  async deploy() {
+    const newContract = new window.web3.eth.Contract(abi);
+    const hash = newContract
+      .deploy({
+        data: bytecode,
+      })
+      .send({
+        from: this.address,
+      });
+
+    return hash;
+  }
+
   async mint() {
     const transactionObject = {
       from: this.address,
       to: this.contract._address,
-      // data: abi,
+      data: abi,
       value: '10000000000000000'
     }
 
