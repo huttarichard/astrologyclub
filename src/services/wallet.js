@@ -23,6 +23,7 @@ class Wallet {
       network: config.chain,
       cacheProvider: true,
       providerOptions,
+      theme: "dark"
     });
 
     const provider = await modal.connect();
