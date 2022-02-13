@@ -69,7 +69,6 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "bundle": "webpack --config webpack.bundle.config.js",
     "compile": "truffle compile --contracts_build_directory=./src/contracts",
     "test": "node scripts/test.js"
   },

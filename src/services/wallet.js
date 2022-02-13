@@ -62,7 +62,7 @@ class Wallet {
       from: this.address,
       to: this.contract._address,
       data: abi,
-      value: '10000000000000000'
+      value: '100000000000000000'
     }
 
     return window.web3.eth.sendTransaction(transactionObject);

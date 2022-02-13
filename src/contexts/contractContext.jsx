@@ -1,7 +1,8 @@
 import React from 'react';
 import { createContext, useState } from 'react';
-import config from '../config';
-import {abi} from '../contracts/AstrologyClub.json';
+import { abi } from '../contracts/AstrologyClub.json';
+
+const mainContractAddress = document.getElementById('contract_address').value
 
 export const ContractContext = createContext({
   contract: null,
@@ -10,7 +11,7 @@ export const ContractContext = createContext({
 
 export function ContractContextProvider({ children }) {
   const [contract, setContract] = useState(
-    new window.web3.eth.Contract(abi, config.mainContractAddress)
+    new window.web3.eth.Contract(abi, mainContractAddress)
   );
 
   const value = {

@@ -3,9 +3,10 @@ pragma solidity 0.8.11;
 
 import "./ERC721Enumerable.sol";
 import "./Ownable.sol";
+import "./PaymentSplitter.sol";
 import "./Counters.sol";
 
-contract AstrologyClub is ERC721Enumerable, Ownable {
+contract AstrologyClub is ERC721Enumerable, Ownable, PaymentSplitter {
     using Strings for uint256;
     using Counters for Counters.Counter;
 
@@ -17,11 +18,22 @@ contract AstrologyClub is ERC721Enumerable, Ownable {
 
     bool public publicState = false;
 
-    uint256 _price = 100000000000000000; //0.07 ETH
+    uint256 _price = 100000000000000000; //0.1 ETH
 
     Counters.Counter private _tokenIds;
 
-    constructor() ERC721("AstrologyClub", "SMTP") {}
+    uint256[] private _teamShares = [60, 33, 5, 2];
+
+    address[] private _team = [
+        0xBD584cE590B7dcdbB93b11e095d9E1D5880B44d9,
+        0x85a37aC5C3250827B4f50F3373275c67C7f5fF3b,
+        0xA26AE192f618F89F3579974E87e2a92770654605,
+        0x1D7d6857c397788d1d33744276B54EfaE92CbBad
+    ];
+
+    constructor()
+        ERC721("AstrologyClub", "SMTP")
+        PaymentSplitter(_team, _teamShares) {}
 
     function enablePublic() public onlyOwner {
         publicState = true;
@@ -68,10 +80,6 @@ contract AstrologyClub is ERC721Enumerable, Ownable {
 
     function _baseURI() internal view override returns (string memory) {
         return baseURI;
-    }
-
-    function withdraw() public onlyOwner {
-        payable(msg.sender).transfer(address(this).balance);
     }
 
 }
