@@ -134,7 +134,7 @@ function MintModal({show, handleClose}) {
     setMessage('minting...');
 
     if (quantity < 1 || quantity > 3) {
-      setMessage('Please select quantity between 1 and 3.');
+      setMessage('Please select quantity between 1 and 30.');
       setDisabled(false);
 
       return;
@@ -167,7 +167,7 @@ function MintModal({show, handleClose}) {
         <h2>Mint</h2>
         <ModalForm onSubmit={handleSubmit}>
           <label>
-            <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum eveniet nulla assumenda ullam ut quis?</span>
+            <span>Connect with you zodiac tribe. Discover and meet astrology lovers and enthusiasts  from all over the world.</span>
             <input
               type="number"
               value={quantity}
@@ -184,7 +184,7 @@ function MintModal({show, handleClose}) {
               <span>0.1 ETH</span>
             </div>
             <div>
-              <span>Maximum amount: 3</span>
+              <span>Maximum amount: 30</span>
             </div>
           </MintData>
           <StyledButton disabled={disabled}>Mint</StyledButton>

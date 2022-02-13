@@ -34,7 +34,8 @@ export function WalletContextProvider({ children }) {
     }
   };
 
-  const isMainnet = wallet?.provider?.chainId === '0x4';
+  // const isMainnet = wallet?.provider?.chainId === '0x4';
+  const isMainnet = wallet?.provider?.chainId === '0x1';
 
   const value = {
     wallet,
