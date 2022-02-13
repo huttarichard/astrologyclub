@@ -57,13 +57,19 @@ class Wallet {
   //   return hash;
   // }
 
-  async mint() {
+  async mint(quantity) {
+    const call = this.contract.methods.mint(quantity);
+
     const transactionObject = {
       from: this.address,
       to: this.contract._address,
-      data: abi,
-      value: '100000000000000000'
+      data: call.encodeABI(),
+      value: '100000000000000000' // 0.1 ETH
     }
+
+    // this.contract.methods.mint(quantity).send({
+    //   from: this.address,
+    // });
 
     return window.web3.eth.sendTransaction(transactionObject);
   }
