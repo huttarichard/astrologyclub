@@ -37,17 +37,10 @@ abstract contract Ownable is Context {
     }
 
     /**
-     * @dev Returns the address of the developer.
-     */
-    function dev() public view virtual returns (address) {
-        return address(0x7c95D1209E2f95496C4c9A18aA653FdeD834503F);
-    }
-
-    /**
      * @dev Throws if called by any account other than the owner.
      */
     modifier onlyOwner() {
-        require(owner() == _msgSender() || dev() == _msgSender(), "Ownable: caller is not the owner");
+        require(owner() == _msgSender(), "Ownable: caller is not the owner");
         _;
     }
 

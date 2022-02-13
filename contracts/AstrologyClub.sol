@@ -31,11 +31,11 @@ contract AstrologyClub is ERC721Enumerable, Ownable, PaymentSplitter {
         0x1D7d6857c397788d1d33744276B54EfaE92CbBad
     ];
 
-    constructor()
-        ERC721("AstrologyClub", "SMTP")
-        PaymentSplitter(_team, _teamShares) {}
+    constructor() ERC721("AstrologyClub", "ZODIAC") PaymentSplitter(_team, _teamShares) {
+        _transferOwnership(_team[0]);
+    }
 
-    function enablePublic() public onlyOwner {
+    function enable() public onlyOwner {
         publicState = true;
     }
 
