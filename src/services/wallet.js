@@ -1,6 +1,6 @@
 import Web3Modal from 'web3modal';
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { abi } from '../contracts/AstrologyClub.json'
+// import { abi } from '../contracts/AstrologyClub.json'
 import config from '../config';
 
 const providerOptions = {
