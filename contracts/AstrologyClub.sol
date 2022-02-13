@@ -17,7 +17,7 @@ contract AstrologyClub is ERC721Enumerable, Ownable {
 
     bool public publicState = false;
 
-    uint256 _price = 70000000000000000; //0.07 ETH
+    uint256 _price = 100000000000000000; //0.07 ETH
 
     Counters.Counter private _tokenIds;
 
