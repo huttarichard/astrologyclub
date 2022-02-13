@@ -133,7 +133,7 @@ function MintModal({show, handleClose}) {
     setDisabled(true);
     setMessage('minting...');
 
-    if (quantity < 1 || quantity > 3) {
+    if (quantity < 1 || quantity > 30) {
       setMessage('Please select quantity between 1 and 30.');
       setDisabled(false);
 
