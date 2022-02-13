@@ -61,7 +61,7 @@ contract AstrologyClub is ERC721Enumerable, Ownable, PaymentSplitter {
         require(publicState, "mint disabled");
 
         require(_amount > 0, "zero amount");
-        require(_amount <= 3, "can't mint so much tokens");
+        require(_amount <= 30, "can't mint so much tokens");
 
         require(
             totalMinted + _amount <= maxMintSupply,
