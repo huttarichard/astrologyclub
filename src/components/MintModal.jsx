@@ -141,7 +141,7 @@ function MintModal({show, handleClose}) {
     }
 
     try {
-      let res = await wallet.mint(quantity);
+      const res = await wallet.mint(quantity);
       if (res.status) {
         setMessage('Congrats, minting process completed!');
       } else {
