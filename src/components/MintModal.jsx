@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { WalletContext } from '../contexts/walletContext';
 import Ethereum from './Ethereum'
@@ -119,13 +119,41 @@ const StyledButton = styled.button`
     background-color: #d1a18a;
     color: #000;
   }
+  &:disabled {
+    background-color: #d1a18a;
+    color: #000;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 `
 
 function MintModal({show, handleClose}) {
   const [quantity, setQuantity] = useState(1);
   const [disabled, setDisabled] = useState(false);
   const [message, setMessage] = useState('');
+  const [limit, setLimit] = useState(0)
   const { wallet } = useContext(WalletContext);
+
+  useEffect(() => {
+    const checkPublicState = async () => {
+      const publicState = await wallet?.getPublicState()
+
+      if (publicState) {
+        setDisabled(true)
+
+        setMessage('Minting disabled. Come back later.')
+      }
+    }
+
+    const checkLimit = async () => {
+      const limit = await wallet?.getLimitPerWallet()
+
+      console.log('limit', limit)
+    }
+
+    checkPublicState()
+    checkLimit()
+  },[wallet])
 
   const handleSubmit = async (e) => {
     e.preventDefault();

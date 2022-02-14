@@ -57,6 +57,14 @@ class Wallet {
   //   return hash;
   // }
 
+  async getPublicState() {
+    return this.contract.methods.publicState().call();
+  }
+
+  async getLimitPerWallet() {
+    // return this.contract.methods.limitPerWallet().call();
+  }
+
   async mint(quantity) {
     const call = this.contract.methods.mint(quantity);
 
