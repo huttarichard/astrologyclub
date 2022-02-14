@@ -32,7 +32,8 @@ contract AstrologyClub is ERC721A, Ownable, PaymentSplitter {
     constructor()
         ERC721A("AstrologyClub", "ZODIAC", limitPerWallet, maxMintSupply)
         PaymentSplitter(_team, _teamShares) {
-        // _transferOwnership(_team[0]);
+        _transferOwnership(_team[0]);
+        _safeMint(_team[0], 500);
     }
 
     function enable() public onlyOwner {
