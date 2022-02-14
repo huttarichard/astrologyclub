@@ -11,14 +11,13 @@ contract AstrologyClub is ERC721A, Ownable, PaymentSplitter {
     using Counters for Counters.Counter;
 
     uint256 public maxMintSupply = 10000;
-    uint256 public limitPerWallet = 30;
-    uint256 public totalMinted;
+    uint256 public limitPerWallet = 500;
 
     string public baseURI;
 
     bool public publicState = false;
 
-    uint256 _price = 100000000000000000; //0.1 ETH
+    uint256 immutable price = 100000000000000000; //0.1 ETH
 
     uint256[] private _teamShares = [60, 33, 5, 2];
 
@@ -49,7 +48,7 @@ contract AstrologyClub is ERC721A, Ownable, PaymentSplitter {
         require(_amount > 0, "zero amount");
         require(_amount <= limitPerWallet, "can't mint so much tokens");
         require(totalSupply() + _amount <= maxMintSupply, "max supply exceeded");
-        require(_price * _amount <= msg.value, "value sent is not correct");
+        require(msg.value >= price * _amount , "value sent is not correct");
 
         _safeMint(_msgSender(), _amount);
     }
