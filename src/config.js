@@ -8,9 +8,9 @@ const chainNameFromInput = document.getElementById('astrologyclub_chain_name').v
 const chainNameFromEnv = process.env.REACT_APP_CHAIN_NAME
 
 const config = {
-  contractAddress: contractAddressFromEnv || contractAddressFromInput,
-  chainId: chainIdFromEnv || chainIdFromInput,
-  chainName: chainNameFromEnv || chainNameFromInput,
+  contractAddress:  contractAddressFromInput || contractAddressFromEnv,
+  chainId:  chainIdFromInput || chainIdFromEnv,
+  chainName: chainNameFromInput || chainNameFromEnv,
   infuraID: "cbb17e1c9af54ec1b90e007ed4854ffe",
 }
 
