@@ -72,11 +72,16 @@ class Wallet {
   async mint(quantity) {
     const call = this.contract.methods.mint(quantity);
 
+    const quantityBN = new window.web3.utils.BN(quantity)
+    const priceBN = new window.web3.utils.BN('100000000000000000')
+
+    const value = quantityBN.mul(priceBN).toString()
+
     const transactionObject = {
       from: this.address,
       to: this.contract._address,
       data: call.encodeABI(),
-      value: '100000000000000000' // 0.1 ETH
+      value: value,
     }
 
     // this.contract.methods.mint(quantity).send({
