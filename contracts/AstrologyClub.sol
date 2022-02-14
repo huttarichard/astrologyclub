@@ -11,11 +11,11 @@ contract AstrologyClub is ERC721A, Ownable, PaymentSplitter {
     using Counters for Counters.Counter;
 
     uint256 public maxMintSupply = 10000;
-    uint256 public limitPerWallet = 500;
+    uint256 public limitPerWallet = 30;
 
     string public baseURI;
 
-    bool public publicState = false;
+    bool public publicState = true;
 
     uint256 immutable price = 100000000000000000; //0.1 ETH
 
@@ -32,7 +32,6 @@ contract AstrologyClub is ERC721A, Ownable, PaymentSplitter {
         ERC721A("AstrologyClub", "ZODIAC", limitPerWallet, maxMintSupply)
         PaymentSplitter(_team, _teamShares) {
         _transferOwnership(_team[0]);
-        _safeMint(_team[0], 500);
     }
 
     function enable() public onlyOwner {
