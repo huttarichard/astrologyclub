@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { WalletContext } from '../contexts/walletContext';
 import Ethereum from './Ethereum'
@@ -119,13 +119,52 @@ const StyledButton = styled.button`
     background-color: #d1a18a;
     color: #000;
   }
+  &:disabled {
+    background-color: #d1a18a;
+    color: #000;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
 `
 
 function MintModal({show, handleClose}) {
   const [quantity, setQuantity] = useState(1);
   const [disabled, setDisabled] = useState(false);
   const [message, setMessage] = useState('');
+  const [limit, setLimit] = useState(0)
   const { wallet } = useContext(WalletContext);
+
+  useEffect(() => {
+    const checkPublicState = async () => {
+      const publicState = await wallet.getPublicState()
+
+      if (!publicState) {
+        setDisabled(true)
+
+        setMessage('Minting disabled. Come back later.')
+      }
+    }
+
+    const checkLimit = async () => {
+      const limitPerWallet = await wallet.getLimitPerWallet()
+      const amountMinted = await wallet.getAmountMinted()
+
+      if (limitPerWallet > amountMinted) {
+        setLimit(limitPerWallet - amountMinted)
+      } else {
+        setDisabled(true)
+
+        setMessage(`You reached the limit of ${limitPerWallet} per wallet`)
+      }
+    }
+
+    if (!wallet) {
+      return
+    }
+
+    checkPublicState()
+    checkLimit()
+  },[wallet])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -172,7 +211,7 @@ function MintModal({show, handleClose}) {
               type="number"
               value={quantity}
               min="1"
-              max="3"
+              max={limit}
               step="1"
               onChange={(e) => setQuantity(e.target.value)}
               required
@@ -184,7 +223,7 @@ function MintModal({show, handleClose}) {
               <span>0.1 ETH</span>
             </div>
             <div>
-              <span>Maximum amount: 30</span>
+              <span>Maximum amount: {limit}</span>
             </div>
           </MintData>
           <StyledButton disabled={disabled}>Mint</StyledButton>
