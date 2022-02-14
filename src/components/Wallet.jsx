@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { WalletContext } from '../contexts/walletContext';
 
 const Wrapper = styled.div`
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
 `
 
 const StyledButton = styled.button`
@@ -26,6 +26,10 @@ const ConnectedWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+`
+
+const NotConnectedWrapper = styled.div`
+  text-align: right;
 `
 
 const WalletWrapper = styled.div`
@@ -52,7 +56,7 @@ function Wallet({showModal}) {
   const { wallet, isMainnet, connectWallet } = useContext(WalletContext);
 
   return <Wrapper>
-    {wallet ? (
+    {wallet && wallet.address ? (
       <ConnectedWrapper>
         <WalletWrapper>
           <span>wallet:</span>
@@ -67,7 +71,9 @@ function Wallet({showModal}) {
         </MintWrapper>
       </ConnectedWrapper>
     ) : (
-      <StyledButton onClick={connectWallet}>Connect Wallet</StyledButton>
+      <NotConnectedWrapper>
+        <StyledButton onClick={connectWallet}>Connect Wallet</StyledButton>
+      </NotConnectedWrapper>
     )}
   </Wrapper>
 }
