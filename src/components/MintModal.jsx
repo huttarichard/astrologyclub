@@ -136,9 +136,9 @@ function MintModal({show, handleClose}) {
 
   useEffect(() => {
     const checkPublicState = async () => {
-      const publicState = await wallet?.getPublicState()
+      const publicState = await wallet.getPublicState()
 
-      if (publicState) {
+      if (!publicState) {
         setDisabled(true)
 
         setMessage('Minting disabled. Come back later.')
@@ -146,9 +146,20 @@ function MintModal({show, handleClose}) {
     }
 
     const checkLimit = async () => {
-      const limit = await wallet?.getLimitPerWallet()
+      const limitPerWallet = await wallet.getLimitPerWallet()
+      const amountMinted = await wallet.getAmountMinted()
 
-      console.log('limit', limit)
+      if (limitPerWallet > amountMinted) {
+        setLimit(limitPerWallet - amountMinted)
+      } else {
+        setDisabled(true)
+
+        setMessage(`You reached the limit of ${limitPerWallet} per wallet`)
+      }
+    }
+
+    if (!wallet) {
+      return
     }
 
     checkPublicState()
@@ -200,7 +211,7 @@ function MintModal({show, handleClose}) {
               type="number"
               value={quantity}
               min="1"
-              max="3"
+              max={limit}
               step="1"
               onChange={(e) => setQuantity(e.target.value)}
               required
@@ -212,7 +223,7 @@ function MintModal({show, handleClose}) {
               <span>0.1 ETH</span>
             </div>
             <div>
-              <span>Maximum amount: 30</span>
+              <span>Maximum amount: {limit}</span>
             </div>
           </MintData>
           <StyledButton disabled={disabled}>Mint</StyledButton>

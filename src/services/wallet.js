@@ -40,6 +40,10 @@ class Wallet {
     return window.web3.utils.fromWei(data);
   }
 
+  async getAmountMinted() {
+    return this.contract.methods.balanceOf(this.address).call();
+  }
+
   get address() {
     return this.provider.selectedAddress;
   }
@@ -62,7 +66,7 @@ class Wallet {
   }
 
   async getLimitPerWallet() {
-    // return this.contract.methods.limitPerWallet().call();
+    return this.contract.methods.limitPerWallet().call();
   }
 
   async mint(quantity) {
