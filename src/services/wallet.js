@@ -69,6 +69,14 @@ class Wallet {
     return this.contract.methods.limitPerWallet().call();
   }
 
+  async getTotalSupply() {
+    return this.contract.methods.totalSupply().call();
+  }
+
+  async getMaxMintSupply() {
+    return this.contract.methods.maxMintSupply().call();
+  }
+
   async mint(quantity) {
     const call = this.contract.methods.mint(quantity);
 
