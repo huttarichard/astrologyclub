@@ -2,6 +2,7 @@ import React from 'react';
 import { createContext, useState, useContext, useEffect } from 'react';
 import Wallet from '../services/wallet';
 import { ContractContext } from '../contexts/contractContext';
+import config from '../config'
 
 export const WalletContext = createContext({
   wallet: null,
@@ -34,8 +35,7 @@ export function WalletContextProvider({ children }) {
     }
   };
 
-  // const isMainnet = wallet?.provider?.chainId === '0x4';
-  const isMainnet = wallet?.provider?.chainId === '0x1';
+  const isMainnet = wallet?.provider?.chainId === config.chainId;
 
   const value = {
     wallet,

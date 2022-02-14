@@ -21,7 +21,7 @@ class Wallet {
 
   static async Connect(contract) {
     const modal = new Web3Modal({
-      network: config.chain,
+      network: config.chainName,
       cacheProvider: true,
       providerOptions,
       theme: "dark"
