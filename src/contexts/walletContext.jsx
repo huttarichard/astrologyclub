@@ -31,7 +31,7 @@ export function WalletContextProvider({ children }) {
 
       setWallet(w);
     } catch (e) {
-      console.log(e);
+      // console.log(e);
     }
   };
 
@@ -51,7 +51,7 @@ export function WalletContextProvider({ children }) {
 
         setWallet(w);
       } catch (e) {
-        console.log(e);
+        // console.log(e);
       }
     }
 

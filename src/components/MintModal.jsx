@@ -192,16 +192,18 @@ function MintModal({show, handleClose}) {
     try {
       const res = await wallet.mint(quantity);
       if (res.status) {
-        await connectWallet()
+        connectWallet()
         setMessage('Congrats, minting process completed!');
       } else {
-        console.log(res);
         setMessage('Something went wrong, try again later.');
       }
     } catch (e) {
-      console.log(e);
 
-      setMessage('Something went wrong, try again later.');
+      if (e.code === -32000) {
+        setMessage('You have insufficient funds in your wallet.');
+      } else {
+        setMessage('Something went wrong, try again later.');
+      }
     }
 
     setDisabled(false);
