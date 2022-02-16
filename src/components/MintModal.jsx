@@ -219,7 +219,7 @@ function MintModal({show, handleClose}) {
         <h2>Mint</h2>
         <ModalForm onSubmit={handleSubmit}>
           <label>
-            <span>Connect with you zodiac tribe. Discover and meet astrology lovers and enthusiasts  from all over the world.</span>
+            <span>Connect with zodiac tribe. Discover and meet astrology lovers and enthusiasts from all over the world.</span>
             <input
               type="number"
               value={quantity}
