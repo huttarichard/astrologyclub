@@ -52,6 +52,11 @@ contract AstrologyClub is ERC721A, Ownable, PaymentSplitter {
         _safeMint(_msgSender(), _amount);
     }
 
+
+    function setBaseURI(string calldata _tokenBaseURI) external onlyOwner {
+        baseURI = _tokenBaseURI;
+    }
+
     function _baseURI() internal view override returns (string memory) {
         return baseURI;
     }
